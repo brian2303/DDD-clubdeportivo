@@ -25,6 +25,10 @@ public class FechaNacimiento implements ValueObject<FechaNacimiento.Value> {
     }
 
     private String fechaToString(Integer dia,Integer mes,Integer anio){
+        var fechaNacimiento = LocalDate.of(anio,mes,dia);
+        if (fechaNacimiento.isAfter(LocalDate.now())){
+            throw new IllegalArgumentException("La fecha de nacimiento no puede ser superior a la fecha actual");
+        }
         return  LocalDate.of(requireNonNull(anio),requireNonNull(mes),requireNonNull(dia))
                 .format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
     }
