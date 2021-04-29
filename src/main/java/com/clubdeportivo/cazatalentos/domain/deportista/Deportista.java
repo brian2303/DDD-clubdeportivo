@@ -1,24 +1,26 @@
 package com.clubdeportivo.cazatalentos.domain.deportista;
 
 import co.com.sofka.domain.generic.AggregateEvent;
-import com.clubdeportivo.cazatalentos.domain.deportista.values.DeportistaId;
-import com.clubdeportivo.cazatalentos.domain.deportista.values.FechaNacimiento;
-import com.clubdeportivo.cazatalentos.domain.deportista.values.NombresCompletos;
-import com.clubdeportivo.cazatalentos.domain.deportista.values.Patologia;
+import com.clubdeportivo.cazatalentos.domain.deportista.events.DeportistaCreado;
+import com.clubdeportivo.cazatalentos.domain.deportista.events.ResponsableAsignado;
+import com.clubdeportivo.cazatalentos.domain.deportista.values.*;
 
 import java.util.List;
 
 public class Deportista extends AggregateEvent<DeportistaId> {
 
-    private NombresCompletos nombresCompletos;
-    private FechaNacimiento fechaNacimiento;
-    private Responsable responsable;
-    private List<Patologia> patologias;
+    protected NombresCompletos nombresCompletos;
+    protected FechaNacimiento fechaNacimiento;
+    protected Responsable responsable;
+    protected List<PreExistencia> preExistencias;
 
-    public Deportista(DeportistaId id, NombresCompletos nombresCompletos, FechaNacimiento fechaNacimiento) {
+    public Deportista(DeportistaId id, NombresCompletos nombresCompletos, FechaNacimiento fechaNacimiento, List<PreExistencia> preExistencias) {
         super(id);
-        this.nombresCompletos = nombresCompletos;
-        this.fechaNacimiento = fechaNacimiento;
+        appendChange(new DeportistaCreado(nombresCompletos,fechaNacimiento,preExistencias)).apply();
+    }
+
+    public void asignarResponsable(NombresCompletos nombresCompletos, TelefonoContacto telefonoContacto,CorreoElectronico correo){
+        appendChange(new ResponsableAsignado(nombresCompletos,telefonoContacto,correo));
     }
 
     private Deportista(DeportistaId id) {
