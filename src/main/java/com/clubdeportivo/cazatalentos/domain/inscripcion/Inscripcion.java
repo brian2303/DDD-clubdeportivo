@@ -3,10 +3,7 @@ package com.clubdeportivo.cazatalentos.domain.inscripcion;
 import co.com.sofka.domain.generic.AggregateEvent;
 import co.com.sofka.domain.generic.DomainEvent;
 import com.clubdeportivo.cazatalentos.domain.deportista.values.DeportistaId;
-import com.clubdeportivo.cazatalentos.domain.inscripcion.events.FechaRenovada;
-import com.clubdeportivo.cazatalentos.domain.inscripcion.events.InscripcionActivada;
-import com.clubdeportivo.cazatalentos.domain.inscripcion.events.OrdenPagoGenerada;
-import com.clubdeportivo.cazatalentos.domain.inscripcion.events.PreInscripcionRealizada;
+import com.clubdeportivo.cazatalentos.domain.inscripcion.events.*;
 import com.clubdeportivo.cazatalentos.domain.inscripcion.values.*;
 
 import java.util.List;
@@ -47,6 +44,10 @@ public class Inscripcion extends AggregateEvent<InscripcionId> {
             Monto monto
     ) {
         appendChange(new InscripcionActivada(inscripcionId,deportistaId,ordenPagoId,monto)).apply();
+    }
+
+    public void asignarHorario(DeportistaId deportistaId, OrdenPagoId ordenPagoId) {
+        appendChange(new HorarioAsignado(deportistaId,ordenPagoId)).apply();
     }
 
     public static Inscripcion from(InscripcionId id, List<DomainEvent> events) {

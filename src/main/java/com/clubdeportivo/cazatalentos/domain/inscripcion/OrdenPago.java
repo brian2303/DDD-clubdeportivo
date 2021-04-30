@@ -5,7 +5,6 @@ import com.clubdeportivo.cazatalentos.domain.inscripcion.values.FechaPago;
 import com.clubdeportivo.cazatalentos.domain.inscripcion.values.Monto;
 import com.clubdeportivo.cazatalentos.domain.inscripcion.values.OrdenPagoId;
 
-import java.time.LocalDate;
 
 
 public class OrdenPago extends Entity<OrdenPagoId> {
@@ -22,6 +21,6 @@ public class OrdenPago extends Entity<OrdenPagoId> {
     }
 
     protected void actualizarFechaLimitePago(int dia, int mes,int anio){
-        this.fechaLimitePago = new FechaPago(dia, mes, anio);
+        this.fechaLimitePago = this.fechaLimitePago.renovarFecha(dia, mes, anio);
     }
 }

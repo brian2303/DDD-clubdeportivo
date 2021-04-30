@@ -23,4 +23,8 @@ public class FechaPago implements ValueObject<String> {
     public String value() {
         return fecha;
     }
+
+    public FechaPago renovarFecha(int dia, int mes, int anio) {
+        return new FechaPago(dia, mes, anio);
+    }
 }

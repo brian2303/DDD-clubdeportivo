@@ -2,10 +2,7 @@ package com.clubdeportivo.cazatalentos.domain.inscripcion;
 
 import co.com.sofka.business.generic.BusinessException;
 import co.com.sofka.domain.generic.EventChange;
-import com.clubdeportivo.cazatalentos.domain.inscripcion.events.FechaRenovada;
-import com.clubdeportivo.cazatalentos.domain.inscripcion.events.InscripcionActivada;
-import com.clubdeportivo.cazatalentos.domain.inscripcion.events.OrdenPagoGenerada;
-import com.clubdeportivo.cazatalentos.domain.inscripcion.events.PreInscripcionRealizada;
+import com.clubdeportivo.cazatalentos.domain.inscripcion.events.*;
 import com.clubdeportivo.cazatalentos.domain.inscripcion.values.DeporteId;
 import com.clubdeportivo.cazatalentos.domain.inscripcion.values.EstadoInscripcion;
 import com.clubdeportivo.cazatalentos.domain.inscripcion.values.FechaPago;
@@ -45,6 +42,13 @@ public class InscripcionEventChange extends EventChange {
                 throw new BusinessException(inscripcion.identity().value(),"El valor cancelado es menor al valor de la inscripcion");
             }
             inscripcion.estadoInscripcion = EstadoInscripcion.ACTIVA;
+        });
+
+        apply((HorarioAsignado event) ->{
+            if (inscripcion.estadoInscripcion.equals(EstadoInscripcion.ANULADA)){
+                throw new BusinessException(inscripcion.identity().value(),"No pude asignar un horario por que la inscripcion esta anulada");
+            }
+            inscripcion.deporte.asignarHorario();
         });
     }
 }
