@@ -57,7 +57,7 @@ class GenerarOrdenPagoUseCaseTest {
         event.setAggregateRootId("rrr");
 
         List<DomainEvent> events = UseCaseHandler.getInstance()
-                .setIdentifyExecutor("rrr")
+                .setIdentifyExecutor(event.aggregateRootId())
                 .syncExecutor(useCase,new TriggeredEvent<>(event)).orElseThrow().getDomainEvents();
 
         var ordenPagoGenerada = (OrdenPagoGenerada) events.get(0);

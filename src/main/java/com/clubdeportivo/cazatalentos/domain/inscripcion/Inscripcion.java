@@ -3,6 +3,8 @@ package com.clubdeportivo.cazatalentos.domain.inscripcion;
 import co.com.sofka.domain.generic.AggregateEvent;
 import co.com.sofka.domain.generic.DomainEvent;
 import com.clubdeportivo.cazatalentos.domain.deportista.values.DeportistaId;
+import com.clubdeportivo.cazatalentos.domain.inscripcion.events.FechaRenovada;
+import com.clubdeportivo.cazatalentos.domain.inscripcion.events.InscripcionActivada;
 import com.clubdeportivo.cazatalentos.domain.inscripcion.events.OrdenPagoGenerada;
 import com.clubdeportivo.cazatalentos.domain.inscripcion.events.PreInscripcionRealizada;
 import com.clubdeportivo.cazatalentos.domain.inscripcion.values.*;
@@ -18,13 +20,33 @@ public class Inscripcion extends AggregateEvent<InscripcionId> {
     protected EstadoInscripcion estadoInscripcion;
     protected OrdenPago ordenPago;
 
-    public Inscripcion(InscripcionId entityId, FechaInscripcion fechaInscripcion,DeportistaId deportistaId,Monto monto,NombreDeporte nombreDeporte) {
+    public Inscripcion(
+            InscripcionId entityId,
+            FechaInscripcion fechaInscripcion,
+            DeportistaId deportistaId,
+            Monto monto,
+            NombreDeporte nombreDeporte
+    ) {
         super(entityId);
-        appendChange(new PreInscripcionRealizada(fechaInscripcion,deportistaId,monto,nombreDeporte));
+        appendChange(new PreInscripcionRealizada(fechaInscripcion,deportistaId,monto,nombreDeporte)).apply();
     }
 
     public void generarOrdenPago(Monto monto,String nombres) {
         appendChange(new OrdenPagoGenerada(monto,nombres)).apply();
+    }
+
+    public void extenderFechaLimitePago(int dia,int mes, int anio){
+        appendChange(new FechaRenovada(dia,mes,anio)).apply();
+    }
+
+
+    public void activarInscripcion(
+            InscripcionId inscripcionId,
+            DeportistaId deportistaId,
+            OrdenPagoId ordenPagoId,
+            Monto monto
+    ) {
+        appendChange(new InscripcionActivada(inscripcionId,deportistaId,ordenPagoId,monto)).apply();
     }
 
     public static Inscripcion from(InscripcionId id, List<DomainEvent> events) {

@@ -21,7 +21,7 @@ public class Deportista extends AggregateEvent<DeportistaId> {
     }
 
     public void asignarResponsable(NombresCompletos nombresCompletos, TelefonoContacto telefonoContacto,CorreoElectronico correo){
-        appendChange(new ResponsableAsignado(nombresCompletos,telefonoContacto,correo));
+        appendChange(new ResponsableAsignado(nombresCompletos,telefonoContacto,correo)).apply();
     }
 
     public void actualizarDatos(NombresCompletos nombresCompletos, FechaNacimiento fechaNacimiento) {
