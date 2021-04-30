@@ -7,13 +7,11 @@ import com.clubdeportivo.cazatalentos.domain.inscripcion.events.OrdenPagoGenerad
 import com.clubdeportivo.cazatalentos.domain.inscripcion.events.PreInscripcionRealizada;
 import com.clubdeportivo.cazatalentos.domain.inscripcion.values.*;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public class Inscripcion extends AggregateEvent<InscripcionId> {
 
     protected FechaInscripcion fechaInscripcion;
-    protected FechaPago fechaPago;
     protected Deporte deporte;
     protected DeportistaId deportistaId;
     protected Monto monto;

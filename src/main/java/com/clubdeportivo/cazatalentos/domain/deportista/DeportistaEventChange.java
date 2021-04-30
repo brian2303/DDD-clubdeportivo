@@ -1,6 +1,7 @@
 package com.clubdeportivo.cazatalentos.domain.deportista;
 
 import co.com.sofka.domain.generic.EventChange;
+import com.clubdeportivo.cazatalentos.domain.deportista.events.DatosDeportistaActualizados;
 import com.clubdeportivo.cazatalentos.domain.deportista.events.DeportistaCreado;
 import com.clubdeportivo.cazatalentos.domain.deportista.events.ResponsableAsignado;
 import com.clubdeportivo.cazatalentos.domain.deportista.values.ResponsableId;
@@ -20,6 +21,11 @@ public class DeportistaEventChange extends EventChange {
                     event.getTelefonoContacto(),
                     event.getCorreo()
             );
+        });
+
+        apply((DatosDeportistaActualizados event)->{
+            deportista.nombresCompletos = event.getNombresCompletos();
+            deportista.fechaNacimiento = event.getFechaNacimiento();
         });
     }
 }
