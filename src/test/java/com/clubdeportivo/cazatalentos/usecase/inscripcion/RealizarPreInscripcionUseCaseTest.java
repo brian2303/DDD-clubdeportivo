@@ -7,10 +7,7 @@ import com.clubdeportivo.cazatalentos.domain.deportista.values.TipoDocumento;
 import com.clubdeportivo.cazatalentos.domain.inscripcion.Inscripcion;
 import com.clubdeportivo.cazatalentos.domain.inscripcion.command.RealizarPreInscripcion;
 import com.clubdeportivo.cazatalentos.domain.inscripcion.events.PreInscripcionRealizada;
-import com.clubdeportivo.cazatalentos.domain.inscripcion.values.FechaInscripcion;
-import com.clubdeportivo.cazatalentos.domain.inscripcion.values.InscripcionId;
-import com.clubdeportivo.cazatalentos.domain.inscripcion.values.Monto;
-import com.clubdeportivo.cazatalentos.domain.inscripcion.values.NombreDeporte;
+import com.clubdeportivo.cazatalentos.domain.inscripcion.values.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

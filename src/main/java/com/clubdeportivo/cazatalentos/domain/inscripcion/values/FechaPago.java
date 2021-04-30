@@ -13,8 +13,8 @@ public class FechaPago implements ValueObject<String> {
 
     public FechaPago(int dia,int mes, int anio) {
         var fechaPago = LocalDate.of(requireNonNull(anio),requireNonNull(mes),requireNonNull(dia));
-        if (fechaPago.isAfter(LocalDate.now())){
-            throw new IllegalArgumentException("La fecha de pago no puede ser superior a la fecha actual");
+        if (fechaPago.isBefore(LocalDate.now())){
+            throw new IllegalArgumentException("La fecha de pago no puede ser anterior a la fecha actual");
         }
         this.fecha = fechaPago.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
     }
