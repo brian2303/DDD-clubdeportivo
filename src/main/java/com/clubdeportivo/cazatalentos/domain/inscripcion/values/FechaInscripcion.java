@@ -11,8 +11,8 @@ public class FechaInscripcion implements ValueObject<String> {
 
     public FechaInscripcion(int dia, int mes, int anio) {
         var fechaInscripcion = LocalDate.of(anio,mes,dia);
-        if (fechaInscripcion.isAfter(LocalDate.now())){
-            throw new IllegalArgumentException("La fecha de inscripcion no puede ser superior");
+        if (fechaInscripcion.isBefore(LocalDate.now())){
+            throw new IllegalArgumentException("La fecha de inscripcion no puede ser anterior a la fecha actual");
         }
         this.fecha = fechaInscripcion.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));;
     }
