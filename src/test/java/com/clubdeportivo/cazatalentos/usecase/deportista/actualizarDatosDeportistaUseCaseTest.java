@@ -9,6 +9,7 @@ import com.clubdeportivo.cazatalentos.domain.deportista.events.DatosDeportistaAc
 import com.clubdeportivo.cazatalentos.domain.deportista.events.DeportistaCreado;
 import com.clubdeportivo.cazatalentos.domain.deportista.events.ResponsableAsignado;
 import com.clubdeportivo.cazatalentos.domain.deportista.values.*;
+import com.clubdeportivo.cazatalentos.usecase.UseCaseHandleBaseTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,30 +19,30 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @ExtendWith(MockitoExtension.class)
-class actualizarDatosDeportistaUseCaseTest {
+class actualizarDatosDeportistaUseCaseTest extends UseCaseHandleBaseTest {
 
     @Mock
     DomainEventRepository repository;
 
     @Test
-    void actualizarDatosDeportista(){
+    void actualizarDatosDeportista() throws InterruptedException {
         var id = DeportistaId.of("2243",TipoDocumento.TARJETA_IDENTIDAD);
         var nombres = new NombresCompletos("Andres","Perez");
         var fechaNacimiento = new FechaNacimiento(15,9,2012);
         var command = new ActualizarDatosDeportista(id,fechaNacimiento,nombres);
 
         Mockito.when(repository.getEventsBy(id.value())).thenReturn(eventosAlmacenados());
-        var useCase = new actualizarDatosDeportistaUseCase();
+        var useCase = new ActualizarDatosDeportistaUseCase();
         useCase.addRepository(repository);
 
-        var events = UseCaseHandler.getInstance()
+        UseCaseHandler.getInstance()
                 .setIdentifyExecutor(id.value())
-                .syncExecutor(useCase,new RequestCommand<>(command)).orElseThrow().getDomainEvents();
-
-        var event = (DatosDeportistaActualizados) events.get(0);
+                .asyncExecutor(useCase,new RequestCommand<>(command))
+                .subscribe(subscriber);
+        Thread.sleep(2000);
+        Mockito.verify(subscriber,Mockito.times(1)).onNext(eventCaptor.capture());
+        var event = (DatosDeportistaActualizados) eventCaptor.getAllValues().get(0);
 
         Assertions.assertEquals(nombres.value(),event.getNombresCompletos().value());
         Assertions.assertEquals(fechaNacimiento.value().fechaNacimiento(),event.getFechaNacimiento().value().fechaNacimiento());

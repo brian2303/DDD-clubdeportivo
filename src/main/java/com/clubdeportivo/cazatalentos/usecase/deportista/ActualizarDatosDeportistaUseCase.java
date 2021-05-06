@@ -6,11 +6,10 @@ import co.com.sofka.business.support.ResponseEvents;
 import com.clubdeportivo.cazatalentos.domain.deportista.Deportista;
 import com.clubdeportivo.cazatalentos.domain.deportista.command.ActualizarDatosDeportista;
 
-public class actualizarDatosDeportistaUseCase extends UseCase<RequestCommand<ActualizarDatosDeportista>,ResponseEvents> {
+public class ActualizarDatosDeportistaUseCase extends UseCase<RequestCommand<ActualizarDatosDeportista>,ResponseEvents> {
 
     @Override
     public void executeUseCase(RequestCommand<ActualizarDatosDeportista> inputCommand) {
-
         var command = inputCommand.getCommand();
         var deportista = Deportista.from(command.getDeportistaId(),retrieveEvents());
         deportista.actualizarDatos(command.getNombresCompletos(),command.getFechaNacimiento());

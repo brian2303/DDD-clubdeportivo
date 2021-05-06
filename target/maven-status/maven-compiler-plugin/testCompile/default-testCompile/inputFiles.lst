@@ -1,1 +1,9 @@
-/home/brihdz/Documentos/Sofka/Parte tecnica/retos/haciendo_ddd_desde_cero/src/test/java/com/clubdeportivo/cazatalentos/CazatalentosApplicationTests.java
+/home/brihdz/Documentos/Sofka/Parte tecnica/retos/haciendo_ddd_desde_cero/src/test/java/com/clubdeportivo/cazatalentos/usecase/deportista/actualizarDatosDeportistaUseCaseTest.java
+/home/brihdz/Documentos/Sofka/Parte tecnica/retos/haciendo_ddd_desde_cero/src/test/java/com/clubdeportivo/cazatalentos/usecase/inscripcion/ActivarInscripcionUseCaseTest.java
+/home/brihdz/Documentos/Sofka/Parte tecnica/retos/haciendo_ddd_desde_cero/src/test/java/com/clubdeportivo/cazatalentos/usecase/inscripcion/RealizarPreInscripcionUseCaseTest.java
+/home/brihdz/Documentos/Sofka/Parte tecnica/retos/haciendo_ddd_desde_cero/src/test/java/com/clubdeportivo/cazatalentos/usecase/inscripcion/ExtenderFechaPagoUseCaseTest.java
+/home/brihdz/Documentos/Sofka/Parte tecnica/retos/haciendo_ddd_desde_cero/src/test/java/com/clubdeportivo/cazatalentos/usecase/deportista/crearDeportistaUseCaseTest.java
+/home/brihdz/Documentos/Sofka/Parte tecnica/retos/haciendo_ddd_desde_cero/src/test/java/com/clubdeportivo/cazatalentos/usecase/inscripcion/AsignarHorarioUseCaseTest.java
+/home/brihdz/Documentos/Sofka/Parte tecnica/retos/haciendo_ddd_desde_cero/src/test/java/com/clubdeportivo/cazatalentos/usecase/UseCaseHandleBaseTest.java
+/home/brihdz/Documentos/Sofka/Parte tecnica/retos/haciendo_ddd_desde_cero/src/test/java/com/clubdeportivo/cazatalentos/usecase/inscripcion/GenerarOrdenPagoUseCaseTest.java
+/home/brihdz/Documentos/Sofka/Parte tecnica/retos/haciendo_ddd_desde_cero/src/test/java/com/clubdeportivo/cazatalentos/usecase/SubscriberMockTest.java

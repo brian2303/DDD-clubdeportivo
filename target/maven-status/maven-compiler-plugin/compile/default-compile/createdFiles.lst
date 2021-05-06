@@ -1,1 +1,17 @@
+com/clubdeportivo/cazatalentos/infra/config/CommandConfiguration.class
+com/clubdeportivo/cazatalentos/infra/command/CommandController.class
+com/clubdeportivo/cazatalentos/infra/bus/RabbitMQEventBus.class
+com/clubdeportivo/cazatalentos/infra/bus/RabbitMQConsumer.class
+com/clubdeportivo/cazatalentos/infra/bus/EventSubscriber.class
+com/clubdeportivo/cazatalentos/infra/bus/EventListenerSubscriber.class
+com/clubdeportivo/cazatalentos/infra/config/CorsConfiguration.class
+com/clubdeportivo/cazatalentos/usecase/deportista/ActualizarDatosDeportistaUseCase.class
 com/clubdeportivo/cazatalentos/CazatalentosApplication.class
+com/clubdeportivo/cazatalentos/infra/repo/MongoEventStoreRepository.class
+com/clubdeportivo/cazatalentos/usecase/deportista/CrearDeportistaUseCase.class
+com/clubdeportivo/cazatalentos/infra/config/CorsConfiguration$1.class
+com/clubdeportivo/cazatalentos/usecase/deportista/handle/CrearDeportistaHandle.class
+com/clubdeportivo/cazatalentos/infra/command/ErrorRestControllerAdvice.class
+com/clubdeportivo/cazatalentos/infra/repo/DocumentEventStored.class
+com/clubdeportivo/cazatalentos/infra/command/ResponseError.class
+com/clubdeportivo/cazatalentos/infra/handle/DeportistaMaterialize.class

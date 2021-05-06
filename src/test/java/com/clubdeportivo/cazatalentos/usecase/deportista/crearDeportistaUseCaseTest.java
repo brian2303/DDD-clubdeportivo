@@ -36,7 +36,7 @@ class crearDeportistaUseCaseTest {
                 correo
         );
 
-        var useCase = new crearDeportistaUseCase();
+        var useCase = new CrearDeportistaUseCase();
         List<DomainEvent> events = UseCaseHandler.getInstance().
                 syncExecutor(useCase,new RequestCommand<>(command)).orElseThrow().getDomainEvents();
         var deportistaCreado = (DeportistaCreado) events.get(0);

@@ -7,7 +7,8 @@ import com.clubdeportivo.cazatalentos.domain.deportista.Deportista;
 import com.clubdeportivo.cazatalentos.domain.deportista.command.CrearDeportista;
 import com.clubdeportivo.cazatalentos.domain.deportista.values.DeportistaId;
 
-public class crearDeportistaUseCase extends UseCase<RequestCommand<CrearDeportista>, ResponseEvents> {
+
+public class CrearDeportistaUseCase extends UseCase<RequestCommand<CrearDeportista>, ResponseEvents> {
 
     @Override
     public void executeUseCase(RequestCommand<CrearDeportista> crearDeportistaRequestCommand) {
